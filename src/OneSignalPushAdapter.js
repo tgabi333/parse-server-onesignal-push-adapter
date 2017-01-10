@@ -29,6 +29,7 @@ export class OneSignalPushAdapter {
   }
 
   send(data, installations) {
+    console.log('SENDING OUT', data);
     let deviceMap = utils.classifyInstallations(installations, this.validPushTypes);
 
     let sendPromises = [];
@@ -187,6 +188,7 @@ export class OneSignalPushAdapter {
     data['app_id'] = this.OneSignalConfig['appId'];
 
     let request = this.https.request(options, function(res) {
+      console.log("HTTPS RESPONSE", res)
       if(res.statusCode < 299) {
         cb(true);
       } else {
